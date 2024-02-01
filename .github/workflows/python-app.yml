@@ -1,0 +1,36 @@
+name: Autograder in Docker
+
+on:
+  workflow_dispatch:
+    inputs:
+      username:
+        description: 'Applicant Username'
+        required: false  
+        default: ''
+      use_external_repo:
+        description: 'Use external repository?'
+        required: true
+        default: 'false'
+
+jobs:
+  build-and-test: 
+    name: Autograding for ${{ github.event.inputs.username }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Git config
+      if: inputs.use_external_repo == 'true'
+      run: |
+        git config --global user.email "davidt@chislgroup.com"
+        git config --global user.name "${{ github.actor }}"
+
+    - name: Checkout files from applicant and commit
+      if: inputs.use_external_repo == 'true' && inputs.username != ''
+      run: |
+        git remote add my-assessment https://github.com/${{ github.event.inputs.username }}/my-assessment.git
+        git fetch my-assessment
+        git checkout my-assessment/main -- Task_1/Advanced_SQL.py Task_1/SQL.py
+        git add Task_1/Advanced_SQL.py Task_1/SQL.py
+        git commit -m "Added submission files from ${{ github.event.inputs.username }}"
+        git push 
