@@ -17,10 +17,7 @@ def question_1():
     # Find all name-surname combinations that are duplicated in the customers dataset. 
     # Return `Name` and `Surname` columns
 
-    qry = """SELECT name, surname 
-             FROM customers 
-             GROUP BY name, surname 
-             HAVING COUNT(*) > 1;"""
+    qry = """___"""
 
     return qry
 
@@ -30,10 +27,7 @@ def question_2():
     
     # Return the `Name`, `Surname` and `Income` of all female customers in the dataset in descending order of income
 
-    qry = """SELECT Name, Surname, Income
-             FROM (SELECT DISTINCT * FROM customers)
-             WHERE Gender = 'Female'
-             ORDER BY CustomerID, Income DESC;"""  
+    qry = """___"""  
 
     return qry
 
@@ -44,10 +38,7 @@ def question_3():
     
     # Find the `ApprovalPercentage` of loans by `LoanTerm`
 
-    qry = """SELECT LoanTerm, 
-             (SUM(CASE WHEN ApprovalStatus = 'Approved' THEN 1 ELSE 0 END) / COUNT(*)) * 100 AS ApprovalPercentage,
-             FROM loans
-             GROUP BY LoanTerm"""
+    qry = """___"""
 
     return qry
 
@@ -59,9 +50,7 @@ def question_4():
     # Return a breakdown of the number of customers per CustomerClass in the credit data
     # Return columns `CustomerClass` and `Count`
 
-    qry = """SELECT CustomerClass, COUNT(DISTINCT CustomerID) as Count 
-             FROM credit 
-             GROUP BY CustomerClass""" 
+    qry = """___""" 
 
     return qry
 
@@ -70,9 +59,10 @@ def question_4():
 
 def question_5():    
     
-    #Q5: Make use of the UPDATE function to amend/fix the following: Customers with a CreditScore between and including 600 to 650 must be classified as CustomerClass C.
+    # Make use of the UPDATE function to amend/fix the following: Customers with a CreditScore between and including 600 to 650 must be classified as CustomerClass C.
 
-    qry = """UPDATE credit SET CustomerClass = 'C' WHERE CreditScore BETWEEN 600 AND 650;"""
+    qry = """___"""
 
     return qry
 
+#hello is this working
